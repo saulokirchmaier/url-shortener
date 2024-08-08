@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2024-08-08
 ### Added
--  NestJS project started.
+- NestJS project started.
 - Docker File e Docker Compose setup.
-- 
+- TypeORM.
+- Postgres connections setup.
