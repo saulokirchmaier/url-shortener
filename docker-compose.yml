@@ -16,6 +16,7 @@ services:
       - DATABASE_NAME=${DATABASE_NAME}
       - JWT_SECRET=${JWT_SECRET}
       - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
+      - LOCALHOST_URL=${LOCALHOST_URL}
     depends_on:
       - db
 
