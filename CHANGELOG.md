@@ -23,3 +23,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - AuthGuard
 - Shortener routes finOne exceptions, find all by user, update and delete
+- Swagger api documentation
