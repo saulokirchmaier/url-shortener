@@ -5,6 +5,10 @@
 
 Projeto de encurtador de URLs realizado como teste prático para a [Teddy Open Finance](https://teddydigital.io)
 
+### Deploy
+
+Este sistema está em produção em https://url-shortener-pnsh.onrender.com/api
+
 ## Sobre o projeto
 
 ### Descrição e informações de desenvolvimento
