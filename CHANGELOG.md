@@ -24,3 +24,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - AuthGuard
 - Shortener routes finOne exceptions, find all by user, update and delete
 - Swagger api documentation
+
+## [0.4.0] - 2024-08-09
+### Added
+- Swagger api documentation descriptions
+- README
+
+### Changed
+- Api url shortener response from string to a object with a url string
