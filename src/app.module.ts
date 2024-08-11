@@ -19,8 +19,11 @@ import { Shortener } from './shortener/entities/shortener.entity';
       port: parseInt(process.env.DATABASE_PORT),
       password: process.env.DATABASE_PASSWORD,
       username: process.env.DATABASE_USER,
-      entities: [User, Shortener],
       database: process.env.DATABASE_NAME,
+      entities: [User, Shortener],
+      ssl: {
+        rejectUnauthorized: false,
+      },
       synchronize: true,
       logging: true,
     }),
