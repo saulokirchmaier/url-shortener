@@ -1,19 +1,23 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
-import { ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('main')
+@ApiTags()
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  @ApiOperation({
+    summary: 'Rota de busca de url encurtadas',
+  })
   @ApiParam({
-    name: 'shorter_url',
+    name: 'token',
+    description: 'Retorna o link original, ao buscar pelo link encurtado',
     type: 'string',
     example: 'Se48&g',
   })
-  @Get(':shorter_url')
-  findOne(@Param('shorter_url') shorter_url: string) {
-    return this.appService.findOne(shorter_url);
+  @Get(':token')
+  findOne(@Param('token') token: string) {
+    return this.appService.findOne(token);
   }
 }

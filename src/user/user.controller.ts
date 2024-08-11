@@ -12,34 +12,49 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserLoginDto } from './dto/user-login.dto';
 import { AuthGuard } from 'src/auth/guards/auth-guard';
-import { ApiBearerAuth, ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @ApiTags('user')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @ApiOperation({
+    summary: 'Rota de criação de novos usuários',
+  })
   @ApiBody({
     type: CreateUserDto,
-    description: 'Json structure for create a new user',
+    description: 'Estrutura JSON para criar um novo usuário',
   })
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
 
+  @ApiOperation({
+    summary: 'Rota de login de usuário',
+  })
   @ApiBody({
-    type: CreateUserDto,
-    description: 'Json structure for login a user',
+    type: UserLoginDto,
+    description: 'Estrutura JSON para logar um usuário',
   })
   @Post('login')
   singIn(@Body() userLoginDto: UserLoginDto) {
     return this.userService.singIn(userLoginDto);
   }
 
+  @ApiOperation({
+    summary: 'Rota de edição de um usuário logado',
+  })
   @ApiBody({
-    type: CreateUserDto,
-    description: 'Json structure for update a existing user',
+    type: UpdateUserDto,
+    description: 'Estrutura JSON para editar um usuário',
   })
   @ApiParam({
     name: 'id',

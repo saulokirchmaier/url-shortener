@@ -29,10 +29,13 @@ export class ShortenerController {
   constructor(private readonly shortenerService: ShortenerService) {}
 
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'This route works with or without a Bearer token' })
+  @ApiOperation({
+    summary:
+      'Rota para criar novos links encurtados. Funciona com ou sem um Bearer Token de acesso',
+  })
   @ApiBody({
     type: CreateShortenerDto,
-    description: 'Json structure for create a shortener URL',
+    description: 'Estrutura JSON para criar um novo link encurtado',
   })
   @UseGuards(AuthGuard)
   @Role({ context: RoleType.NEW_URL })
@@ -41,6 +44,9 @@ export class ShortenerController {
     return this.shortenerService.create(createShortenerDto, request);
   }
 
+  @ApiOperation({
+    summary: 'Rota para encontrar os links encurtados de um usuário logado',
+  })
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @Role({ context: RoleType.USER })
@@ -49,32 +55,35 @@ export class ShortenerController {
     return this.shortenerService.find(request);
   }
 
+  @ApiOperation({
+    summary:
+      'Rota para editar um link encurtado de um usuário logado, podendo passar uma nova url',
+  })
   @ApiBody({
     type: UpdateShortenerDto,
-    description: 'Json structure for update shortener URL',
+    description: 'Estrutura JSON para editar um novo link encurtado',
   })
   @ApiParam({
-    name: 'shorter_url',
+    name: 'token',
     type: 'string',
     example: 'Se48&g',
-    description: 'Shortened Token',
+    description: 'Token de um link encurtado',
   })
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @Role({ context: RoleType.USER })
-  @Put(':shorter_url')
+  @Put(':token')
   update(
-    @Param('shorter_url') shorter_url: string,
+    @Param('token') token: string,
     @Body() updateShortenerDto: UpdateShortenerDto,
     @Req() request: any,
   ) {
-    return this.shortenerService.update(
-      shorter_url,
-      updateShortenerDto,
-      request,
-    );
+    return this.shortenerService.update(token, updateShortenerDto, request);
   }
 
+  @ApiOperation({
+    summary: 'Rota para deletar um link encurtado de um usuário logado',
+  })
   @ApiParam({
     name: 'shorter_url',
     type: 'string',

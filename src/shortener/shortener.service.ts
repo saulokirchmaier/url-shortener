@@ -19,7 +19,10 @@ export class ShortenerService {
     private readonly shortenerRepository: Repository<Shortener>,
   ) {}
 
-  async create({ url }: CreateShortenerDto, request: any): Promise<string> {
+  async create(
+    { url }: CreateShortenerDto,
+    request: any,
+  ): Promise<{ shorter_url: string }> {
     try {
       if (!isValidUrl(url)) {
         throw new BadRequestException('Invalid URL');
@@ -41,10 +44,8 @@ export class ShortenerService {
 
       const shorter_url = `${process.env.LOCALHOST_URL}${token}`;
 
-      return shorter_url;
+      return { shorter_url };
     } catch (error) {
-      console.log(error);
-
       throw new BadRequestException('Please repeat operation');
     }
   }
